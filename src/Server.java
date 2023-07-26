@@ -12,6 +12,7 @@ public class Server {
     public void startServer() {
         try {
             while(!serverSocket.isClosed()) {
+                System.out.println("Awaiting to client");
                 Socket socket = serverSocket.accept();
                 System.out.println("A new client has connected!");
                 ClientHandler clientHandler = new ClientHandler(socket);
@@ -20,12 +21,12 @@ public class Server {
                 thread.start();
             }
         } catch (IOException e) {
-            closeServerSocket();
+            closeServer();
         }
 
     }
 
-    public void closeServerSocket() {
+    public void closeServer() {
         try {
             if (serverSocket != null) {
                 serverSocket.close();
